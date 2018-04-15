@@ -1,5 +1,6 @@
 // @flow
-import { app, Menu, shell, BrowserWindow } from 'electron';
+import { app, Menu, shell, BrowserWindow, dialog } from 'electron';
+// const {dialog} = require('electron');
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
@@ -117,7 +118,20 @@ export default class MenuBuilder {
       label: '&File',
       submenu: [{
         label: '&Open',
-        accelerator: 'Ctrl+O'
+        accelerator: 'Ctrl+O',
+        click: () => {
+          var that = this;
+          dialog.showOpenDialog({
+              // properties: ['openFile', 'multiSelections']
+              properties: ['openFile']
+          }, function (files) {
+              if (files !== undefined) {
+                  // handle files
+                  // console.log('files:', files);
+                  that.mainWindow.webContents.send('open-file', files);
+              }
+          });
+        }
       }, {
         label: '&Close',
         accelerator: 'Ctrl+W',

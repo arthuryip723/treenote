@@ -4,6 +4,8 @@ import { AppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import './app.global.css';
+import { ipcRenderer } from 'electron';
+import { loadFile } from './actions/counter';
 
 const store = configureStore();
 
@@ -25,3 +27,15 @@ if (module.hot) {
     );
   });
 }
+
+ipcRenderer.on('open-file', (event, filenames) => {
+  // TODO: Try to dispatch an action here.
+  // Dispatch an increment event.
+  // store.dispatch({ type: 'OPEN_FILE', filenames });
+  // console.log('files:', filenames);
+  // store.dispatch({
+  //   type: 'INCREMENT_COUNTER'
+  // });
+  console.log('filenames:', filenames);
+  loadFile(filenames[0])(store.dispatch);
+});

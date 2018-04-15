@@ -33,7 +33,10 @@ export function incrementIfOdd() {
   return (dispatch: (action: actionType) => void, getState: () => counterStateType) => {
     const { counter } = getState();
 
-    if (counter % 2 === 0) {
+    // if (counter % 2 === 0) {
+    //   return;
+    // }
+    if (counter.mycounter % 2 === 0) {
       return;
     }
 

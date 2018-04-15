@@ -8,7 +8,8 @@ type Props = {
   incrementIfOdd: () => void,
   incrementAsync: () => void,
   decrement: () => void,
-  counter: number
+  // counter: number
+  counter: {}
 };
 
 export default class Counter extends Component<Props> {
@@ -26,7 +27,7 @@ export default class Counter extends Component<Props> {
           </Link>
         </div>
         <div className={`counter ${styles.counter}`} data-tid="counter">
-          {counter}
+          {counter.mycounter}
         </div>
         <div className={styles.btnGroup}>
           <button className={styles.btn} onClick={increment} data-tclass="btn">

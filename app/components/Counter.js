@@ -29,6 +29,9 @@ export default class Counter extends Component<Props> {
         <div className={`counter ${styles.counter}`} data-tid="counter">
           {counter.mycounter}
         </div>
+        <div className={`counter ${styles.counter}`} data-tid="counter">
+          {counter.data}
+        </div>
         <div className={styles.btnGroup}>
           <button className={styles.btn} onClick={increment} data-tclass="btn">
             <i className="fa fa-plus" />

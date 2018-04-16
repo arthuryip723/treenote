@@ -1,5 +1,5 @@
 // @flow
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/counter';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER, FILE_LOADED } from '../actions/counter';
 import merge from 'lodash/merge';
 
 export type counterStateType = {
@@ -14,7 +14,8 @@ type actionType = {
 };
 
 // export default function counter(state: number = 0, action: actionType) {
-export default function counter(state: {} = { mycounter: 0 }, action: actionType) {
+export default function counter(state: {} = { mycounter: 0, data: null }, action: actionType) {
+  // QUESTION: Is this already the best way to update state?
   console.log('action:', action);  // DELME
   Object.freeze(state);
   let newState = merge({}, state);
@@ -28,6 +29,9 @@ export default function counter(state: {} = { mycounter: 0 }, action: actionType
     case DECREMENT_COUNTER:
       // return state - 1;
       newState.mycounter--;
+      return newState;
+    case FILE_LOADED:
+      newState.data = JSON.stringify(action.data);
       return newState;
     default:
       return newState;
